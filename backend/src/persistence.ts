@@ -83,3 +83,13 @@ export const getPoll = async (code: string): Promise<Poll | null> => {
   const redis = RedisClient.getInstance();
   return redis.get(code);
 };
+
+/**
+ * Update a poll in Redis.
+ * @param code The code of the poll to update.
+ * @param poll The updated poll.
+ */
+export const updatePoll = async (code: string, poll: Poll): Promise<void> => {
+  const redis = RedisClient.getInstance();
+  await redis.set(code, poll, POLL_VALID_DURATION_MS / 1000);
+};
