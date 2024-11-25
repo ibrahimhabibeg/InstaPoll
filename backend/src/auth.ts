@@ -13,3 +13,13 @@ export function createToken(
   const secret = process.env.JWT_SECRET || '';
   return jwt.sign(data, secret, {expiresIn});
 }
+
+/**
+ * Verify the given token.
+ * @param token The token to verify.
+ * @returns The data in the token.
+ */
+export function verifyToken(token: string): object | string {
+  const secret = process.env.JWT_SECRET || '';
+  return jwt.verify(token, secret);
+}
