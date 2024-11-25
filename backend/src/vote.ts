@@ -1,5 +1,6 @@
 import type {Request, Response} from 'express';
 import {getPoll, updatePoll} from './persistence';
+import {notifyPollUpdate} from '.';
 
 /**
  * Handle a vote request.
@@ -30,6 +31,7 @@ const handleVote = async (
   poll.options[optionIndex].votes++;
   await updatePoll(code, poll);
   res.json({success: true});
+  notifyPollUpdate(code, poll);
 };
 
 export default handleVote;

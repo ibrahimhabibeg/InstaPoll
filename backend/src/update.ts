@@ -2,6 +2,7 @@ import {getPoll, updatePoll} from './persistence';
 import type {CustomRequest} from './types';
 import type {Response} from 'express';
 import { verifyToken } from './auth';
+import { notifyPollUpdate } from '.';
 
 const handleUpadte = async (
   req: CustomRequest<
@@ -43,6 +44,7 @@ const handleUpadte = async (
   }
   await updatePoll(poll.code, poll);
   res.json({success: true});
+  notifyPollUpdate(code, poll);
 };
 
 export default handleUpadte;
