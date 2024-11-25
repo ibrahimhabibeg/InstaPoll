@@ -17,6 +17,8 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       NODE_ENV: production
+    env_file:
+      - ./backend/.env
 
   redis:
     container_name: instapoll-redis

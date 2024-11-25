@@ -9,8 +9,8 @@ services:
       - ./frontend/src:/usr/share/nginx/html
       - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
 
-  server:
-    container_name: instapoll-server-dev
+  backend:
+    container_name: instapoll-backend-dev
     build:
       context: ./backend
       target: dev
@@ -23,6 +23,8 @@ services:
       NODE_ENV: production
     volumes:
       - ./backend/src:/usr/src/app/src
+    env_file:
+      - ./backend/.env
 
   redis:
     container_name: instapoll-redis-dev
