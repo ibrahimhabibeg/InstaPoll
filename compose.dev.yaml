@@ -1,0 +1,32 @@
+services:
+  frontend:
+    container_name: instapoll-frontend
+    build:
+      context: ./frontend
+    ports:
+      - 80:80
+    volumes:
+      - ./frontend/src:/usr/share/nginx/html
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+
+  server:
+    container_name: instapoll-server-dev
+    build:
+      context: ./backend
+      target: dev
+    ports:
+      - 3000:3000
+    environment:
+      PORT: 3000
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      NODE_ENV: production
+    volumes:
+      - ./backend/src:/usr/src/app/src
+
+  redis:
+    container_name: instapoll-redis-dev
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
