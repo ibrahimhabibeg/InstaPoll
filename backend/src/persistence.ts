@@ -1,7 +1,7 @@
 import {createClient} from 'redis';
 import {RedisClientType} from 'redis';
 import {POLL_VALID_DURATION_MS} from './config';
-import { Poll } from './types';
+import {Poll} from './types';
 
 /**
  * Singleton class to handle Redis connection.
@@ -17,9 +17,9 @@ class RedisClient {
     return RedisClient.instance;
   }
 
-  private client: RedisClientType | undefined;
+  private client: RedisClientType;
 
-  RedisClient() {
+  private constructor() {
     const client = createClient({
       url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
     });
@@ -72,4 +72,14 @@ export const isCodeUsed = async (code: string): Promise<boolean> => {
 export const savePoll = async (poll: Poll): Promise<void> => {
   const redis = RedisClient.getInstance();
   await redis.set(poll.code, poll, POLL_VALID_DURATION_MS / 1000);
+};
+
+/**
+ * Get a poll from Redis.
+ * @param code The code of the poll to get.
+ * @returns The poll if it exists, null otherwise.
+ */
+export const getPoll = async (code: string): Promise<Poll | null> => {
+  const redis = RedisClient.getInstance();
+  return redis.get(code);
 };
