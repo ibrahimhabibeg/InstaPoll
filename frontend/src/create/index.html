@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Poll</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        color: #555;
+      }
+      input[type="text"],
+      textarea {
+        width: 90%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create a New Poll</h1>
+      <form id="createPollForm">
+        <label for="question">Poll Question</label>
+        <textarea id="question" rows="3"></textarea>
+
+        <div id="options">
+          <div class="option">
+            <label for="option1">Option 1</label>
+            <input type="text" id="option1" />
+            <button type="button" onclick="deleteOption('option1')">
+              Delete
+            </button>
+          </div>
+          <div class="option">
+            <label for="option2">Option 2</label>
+            <input type="text" id="option2" />
+            <button type="button" onclick="deleteOption('option2')">
+              Delete
+            </button>
+          </div>
+        </div>
+        <button type="button" id="addOptionButton" onclick="addOption()">
+          Add Option
+        </button>
+        <button type="submit">Create Poll</button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("createPollForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const question = document.getElementById("question").value;
+          const options = Array.from(
+            document.querySelectorAll("#options input")
+          ).map((option) => option.value);
+          
+          console.log(question, options);
+          const response = await fetch("http://localhost:3000/create", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ question, options }),
+          });
+
+          console.log(response);
+          if (response.ok) {
+            console.log("response ok");
+            const data = await response.json();
+            console.log(data);
+            alert(`Poll created! Your unique code is: ${data.code}`);
+          } else {
+            alert("Failed to create poll. Please try again.");
+          }
+        });
+
+      let optionCount = 2;
+
+      function addOption() {
+        optionCount++;
+        const option = document.createElement("div");
+        option.classList.add("option");
+        option.innerHTML = `
+          <label for="option${optionCount}">Option ${optionCount}</label>
+          <input type="text" id="option${optionCount}" />
+          <button type="button" onclick="deleteOption('option${optionCount}')">
+            Delete
+          </button>
+        `;
+        document.getElementById("options").appendChild(option);
+      }
+
+      function deleteOption(id) {
+        document.getElementById(id).parentNode.remove();
+      }
+    </script>
+  </body>
+</html>
