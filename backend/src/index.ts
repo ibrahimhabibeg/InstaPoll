@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import {createServer} from 'http';
 import {Server} from 'socket.io';
 import {createAdapter} from '@socket.io/redis-adapter';
@@ -13,6 +14,8 @@ import handleConnection from './connection';
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
