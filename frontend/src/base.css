@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-50: #f7fee7;
+  --primary-100: #ecfccb;
+  --primary-200: #d9f99d;
+  --primary-300: #bef264;
+  --primary-400: #a3e635;
+  --primary-500: #84cc16;
+  --primary-600: #65a30d;
+  --primary-700: #4d7c0f;
+  --primary-800: #3f6212;
+  --primary-900: #365314;
+  --primary-950: #1a2e05;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --gray-950: #030712;
+  --danger: #f44336;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --font-size-xs: 0.5rem;
+    --font-size-sm: 0.625rem;
+    --font-size-base: 0.75rem;
+    --font-size-lg: 0.875rem;
+    --font-size-xl: 1rem;
+    --font-size-2xl: 1.125rem;
+    --font-size-3xl: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  :root {
+    --font-size-xs: 0.35rem;
+    --font-size-sm: 0.5rem;
+    --font-size-base: 0.625rem;
+    --font-size-lg: 0.75rem;
+    --font-size-xl: 0.875rem;
+    --font-size-2xl: 1rem;
+    --font-size-3xl: 1.125rem;
+  }
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--gray-100);
+  background-color: var(--gray-950);
+}
+
+textarea {
+  background-color: transparent;
+  color: var(--gray-100);
+  resize: none;
+  border: 0;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background-color: var(--primary-500);
+  color: var(--gray-950);
+  padding: 10px 20px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: var(--font-size-lg);
+  transition: all 0.3s;
+}
+
+button:disabled {
+  background-color: var(--gray-500);
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: var(--primary-600);
+}
+
+button:active {
+  background-color: var(--primary-700);
+}
+
+button:focus {
+  outline: none;
+}
+
+.outline-button {
+  background-color: transparent;
+  border: 1px solid var(--primary-500);
+  color: var(--primary-500);
+}
+
+.outline-button:hover {
+  background-color: var(--primary-500);
+  color: var(--gray-950);
+}
