@@ -93,11 +93,6 @@ button {
   transition: all 0.3s;
 }
 
-button:disabled {
-  background-color: var(--gray-500);
-  cursor: not-allowed;
-}
-
 button:hover {
   background-color: var(--primary-600);
 }
@@ -108,6 +103,15 @@ button:active {
 
 button:focus {
   outline: none;
+}
+
+button:disabled {
+  background-color: var(--gray-500);
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: var(--gray-500);
 }
 
 .outline-button {
