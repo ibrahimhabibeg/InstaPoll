@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: var(--font-size-3xl);
+}
+
+input {
+  background-color: transparent;
+  color: var(--gray-100);
+  width: var(--font-size-3xl);
+  border: none;
+  border: 3px solid var(--primary-400);
+  border-radius: 5px;
+  margin: 0 10px;
+  text-align: center;
+  font-size: var(--font-size-3xl);
+}
+
+input:focus {
+  border-color: var(--primary-500);
+  outline: none;
+}
