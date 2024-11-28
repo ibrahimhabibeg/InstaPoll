@@ -52,8 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       body: JSON.stringify({ optionIndex: selectedOptionIndex, code: code }),
     });
     if (response.status === 200) {
-      alert("Vote submitted successfully");
-      window.location.href = "/";
+      window.location.href = `/result/?code=${code}`;
     } else {
       alert("Failed to submit vote");
     }
