@@ -17,7 +17,9 @@ document
 
     if (response.ok) {
       const data = await response.json();
-      alert(`Poll created! Your unique code is: ${data.code}`);
+      localStorage.setItem("code", data.code);
+      localStorage.setItem("token", data.token);
+      window.location.href = `/result/?code=${data.code}`;      
     } else {
       alert("Failed to create poll. Please try again.");
     }

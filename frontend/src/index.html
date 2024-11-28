@@ -3,20 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World</title>
+    <title>InstaPoll</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="./base.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="./nav.css" />
   </head>
   <body>
-    <h1>Hello World</h1>
+    <nav>
+      <div id="nav-hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div id="nav-logo">
+        <img src="../assets/icon.png" alt="InstaPoll Icon" />
+        <h3>InstaPoll</h3>
+      </div>
+      <div id="nav-links">
+        <div id="nav-home">
+          <a href="/">Home</a>
+        </div>
+        <div id="nav-create">
+          <a href="/create">Create</a>
+        </div>
+        <div id="nav-join">
+          <a href="/join">Join</a>
+        </div>
+        <div id="nav-results">
+          <a>Results</a>
+        </div>
+        <div id="nav-share">
+          <a href="/share">Share</a>
+        </div>
+        <div id="nav-edit">
+          <a href="/edit">Edit</a>
+        </div>
+      </div>
+      <div id="nav-right-adjust"></div>
+    </nav>
+    <script src="./base.js"></script>
+    <script src="./nav.js"></script>
   </body>
 </html>

@@ -27,6 +27,7 @@ inputs.addEventListener("input", function (e) {
       const code = Array.from(inputs.children)
         .map((input) => input.value)
         .join("");
+      localStorage.setItem("code", code);
       window.location.href = `/vote/?code=${code}`;
     }
   }

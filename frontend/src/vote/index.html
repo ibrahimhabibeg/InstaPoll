@@ -10,14 +10,41 @@
   </head>
   <body>
     <nav>
-      <img src="../assets/icon.png" alt="InstaPoll Icon" />
-      <h3>InstaPoll</h3>
+      <div id="nav-hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div id="nav-logo">
+        <img src="../assets/icon.png" alt="InstaPoll Icon" />
+        <h3>InstaPoll</h3>
+      </div>
+      <div id="nav-links">
+        <div id="nav-home">
+          <a href="/">Home</a>
+        </div>
+        <div id="nav-create">
+          <a href="/create">Create</a>
+        </div>
+        <div id="nav-join">
+          <a href="/join">Join</a>
+        </div>
+        <div id="nav-results">
+          <a>Results</a>
+        </div>
+        <div id="nav-share">
+          <a href="/share">Share</a>
+        </div>
+        <div id="nav-edit">
+          <a href="/edit">Edit</a>
+        </div>
+      </div>
+      <div id="nav-right-adjust"></div>
     </nav>
     <div class="container">
       <h1 name="question" id="question"></h1>
       <button id="submit" disabled>Submit Vote</button>
     </div>
     <script src="../base.js"></script>
+    <script src="../nav.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
