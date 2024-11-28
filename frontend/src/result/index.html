@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InstaPoll</title>
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="stylesheet" href="../nav.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav>
+      <img src="../assets/icon.png" alt="InstaPoll Icon" />
+      <h3>InstaPoll</h3>
+    </nav>
+    <div class="container">
+      <h1 name="question" id="question"></h1>
+      <div class="chart-container">
+        <canvas id="chart"></canvas>
+      </div>
+    </div>
+    <script src="../base.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+      integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
