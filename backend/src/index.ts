@@ -8,6 +8,7 @@ import {Redis} from 'ioredis';
 import type {CustomRequest, Poll} from './types';
 import handleCreate from './create';
 import handleJoin from './join';
+import handlePollExists from './pollExists';
 import handleVote from './vote';
 import handleUpdate from './update';
 import handleConnection from './connection';
@@ -29,6 +30,7 @@ app.use((req: CustomRequest, res, next) => {
 
 app.post('/create', handleCreate);
 app.get('/join', handleJoin);
+app.get('/pollExists', handlePollExists);
 app.put('/vote', handleVote);
 app.put('/update', handleUpdate);
 
