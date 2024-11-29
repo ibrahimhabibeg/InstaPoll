@@ -1,0 +1,285 @@
+openapi: 3.0.0
+info:
+  title: InstaPoll API
+  description: >
+    InstaPoll is a simple polling app that allows users to create and vote on polls. 
+    Users can create a poll by entering a question and a list of options. Once a poll is created,
+    users can share the poll with others and vote on it. The poll results are displayed in real-time, 
+    allowing users to see the current results of the poll. The app's main theme is simplicity and speed, 
+    allowing users to create and vote on polls quickly and easily without the need to create an account or log in. 
+    It is designed to be a fun and engaging way for instructors and presenters to gather feedback from their audience in 
+    real-time and add an interactive element to their presentations.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+paths:
+  /create:
+    post:
+      summary: Create a new poll
+      description: Handle the creation of a new poll. Returns the code and token of the created poll.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  description: The question of the poll
+                options:
+                  type: array
+                  items:
+                    type: string
+                  description: The options of the poll
+              required:
+                - question
+                - options
+      responses:
+        '200':
+          description: The code and token of the created poll
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The code of the created poll
+                  token:
+                    type: string
+                    description: The token of the created poll
+        '400':
+          description: Missing question or options
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+  /join:
+    get:
+      summary: Join an existing poll
+      description: Handle joining an existing poll. Returns the poll if found.
+      parameters:
+        - in: query
+          name: code
+          required: true
+          schema:
+            type: string
+          description: The code of the poll
+      responses:
+        '200':
+          description: The poll if found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Poll'
+        '400':
+          description: Missing code
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+        '404':
+          description: Poll not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+  /pollExists:
+    get:
+      summary: Check if a poll exists
+      description: Handle checking if a poll exists. Returns whether the poll exists.
+      parameters:
+        - in: query
+          name: code
+          required: true
+          schema:
+            type: string
+          description: The code of the poll
+      responses:
+        '200':
+          description: Whether the poll exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  used:
+                    type: boolean
+                    description: Indicates if the poll exists
+        '400':
+          description: Missing code
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+  /vote:
+    put:
+      summary: Vote on a poll
+      description: Handle voting on a poll. Returns the success status of the vote.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: The code of the poll
+                optionIndex:
+                  type: integer
+                  description: The index of the option to vote for
+              required:
+                - code
+                - optionIndex
+      responses:
+        '200':
+          description: Vote was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the vote was successful
+        '400':
+          description: Invalid request or invalid option index
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+        '404':
+          description: Poll not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+  /update:
+    put:
+      summary: Update an existing poll
+      description: Handle updating an existing poll. Returns the success status of the update.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: The code of the poll
+                question:
+                  type: string
+                  description: The question of the poll
+                options:
+                  type: array
+                  items:
+                    type: string
+                  description: The options of the poll
+              required:
+                - code
+      responses:
+        '200':
+          description: Update was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates if the update was successful
+        '400':
+          description: Missing code
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+        '403':
+          description: Forbidden request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+        '404':
+          description: Poll not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+components:
+  schemas:
+    PollOption:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The text of the poll option
+        votes:
+          type: integer
+          description: The number of votes for the option
+    Poll:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The code of the poll
+        question:
+          type: string
+          description: The question of the poll
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PollOption'
+          description: The options of the poll

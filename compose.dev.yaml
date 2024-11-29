@@ -32,3 +32,13 @@ services:
     restart: always
     ports:
       - 6379:6379
+
+  swagger:
+    container_name: instapoll-swagger-dev
+    image: swaggerapi/swagger-ui
+    ports:
+      - 8080:8080
+    environment:
+      - SWAGGER_JSON=/api.yaml
+    volumes:
+      - ./backend/api.yaml:/api.yaml
