@@ -5,6 +5,13 @@ import {savePoll} from './persistence';
 import {POLL_VALID_DURATION_MS} from './config';
 import {Poll} from './types';
 
+/**
+ * Handle the creation of a new poll
+ * @param req.body.question The question of the poll
+ * @param req.body.options The options of the poll
+ * @returns The code and token of the created poll
+ * @returns 400 if the question or options are missing
+ */
 const handleCreate = async (
   req: Request<
     unknown,
@@ -18,11 +25,15 @@ const handleCreate = async (
   >,
   res: Response<{code: string; token: string} | {error: string}>,
 ) => {
-  const code = await generatePollCode();
-  if (!req.body || !req.body.question || !req.body.options) {
+  if (
+    !req.body ||
+    req.body.question === undefined ||
+    req.body.options === undefined
+  ) {
     res.status(400).json({error: 'Missing question or options'});
     return;
   }
+  const code = await generatePollCode();
   const {question, options} = req.body;
   const poll: Poll = {
     code,

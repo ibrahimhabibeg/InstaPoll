@@ -3,13 +3,14 @@ import {getPoll, updatePoll} from './persistence';
 import {notifyPollUpdate} from '.';
 
 /**
- * Handle a vote request.
- * @param req The request.
- * @param req.body.code The code of the poll.
- * @param req.body.optionIndex The index of the option to vote for. zero-indexed.
- * @param res The response.
+ * Handle voting on a poll
+ * @param req.body.code The code of the poll
+ * @param req.body.optionIndex The index of the option to vote for
+ * @returns 400 if the code or optionIndex is missing
+ * @returns 404 if the poll is not found
+ * @returns 400 if the optionIndex is invalid
+ * @returns 200 if the vote was successful
  */
-
 const handleVote = async (
   req: Request<unknown, unknown, {code: string; optionIndex: number}>,
   res: Response<{error: string} | {success: boolean}>,

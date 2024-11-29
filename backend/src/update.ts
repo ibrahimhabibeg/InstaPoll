@@ -4,6 +4,16 @@ import type {Response} from 'express';
 import { verifyToken } from './auth';
 import { notifyPollUpdate } from '.';
 
+/**
+ * Handle updating a poll
+ * @param req.body.code The code of the poll
+ * @param req.body.question The question of the poll
+ * @param req.body.options The options of the poll
+ * @returns 400 if the code is missing
+ * @returns 401 if the request is unauthorized
+ * @returns 403 if the request is forbidden
+ * @returns 404 if the poll is not found
+ */
 const handleUpadte = async (
   req: CustomRequest<
     unknown,
