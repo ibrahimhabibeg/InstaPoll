@@ -27,8 +27,16 @@ inputs.addEventListener("input", function (e) {
       const code = Array.from(inputs.children)
         .map((input) => input.value)
         .join("");
-      localStorage.setItem("code", code);
-      window.location.href = `/vote/?code=${code}`;
+      fetch(`http://localhost:3000/pollExists/?code=${code}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.used) {
+            alert("Poll doesn't exist");
+            return;
+          }
+          localStorage.setItem("code", code);
+          window.location.href = `/vote/?code=${code}`;
+        });
     }
   }
 });
