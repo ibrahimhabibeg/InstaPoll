@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else {
     const data = await response.json();
     const { question, options } = data;
-    console.log(options);
     document.getElementById("question").innerText = question;
     const container = document.querySelector(".container");
     options.forEach((option, index) => {
