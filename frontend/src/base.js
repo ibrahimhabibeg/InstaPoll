@@ -7,3 +7,23 @@ document.querySelectorAll("textarea").forEach(function (textarea) {
     this.style.height = this.scrollHeight + "px";
   });
 });
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const code = localStorage.getItem("code");
+  if (code) {
+    const response = await fetch(
+      `http://localhost:3000/pollExists/?code=${code}`
+    );
+    const data = await response.json();
+    if (!data.used) {
+      localStorage.removeItem("code");
+      localStorage.removeItem("token");
+      if (
+        window.location.pathname === "/share" ||
+        window.location.pathname === "/edit"
+      ) {
+        window.location.href = "/";
+      }
+    }
+  }
+});
