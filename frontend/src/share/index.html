@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share</title>
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="stylesheet" href="../nav.css" />
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      #content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      #content h1 {
+        margin-bottom: 1rem;
+      }
+
+      #content p {
+        margin-bottom: 1rem;
+      }
+
+      #qrcode-container {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background-color: var(--gray-50);
+        border-radius: 0.5rem;
+      }
+
+      #content h2 {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(247, 254, 231, 0.5);
+        line-height: 0.1em;
+        margin: 20px 0;
+      }
+
+      #content h2 span {
+        background: var(--gray-950);
+        font-size: var(--font-size-lg);
+        padding: 0 10px;
+      }
+
+      #code {
+        font-size: 3rem;
+        font-weight: bold;
+        letter-spacing: 0.5rem;
+      }
+
+      @media (max-width: 768px) {
+        #code {
+          font-size: 2rem;
+          letter-spacing: 0.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div id="nav-hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div id="nav-logo">
+        <img src="../assets/icon.png" alt="InstaPoll Icon" />
+        <h3>InstaPoll</h3>
+      </div>
+      <div id="nav-links">
+        <a id="nav-home" href="/">
+          <span>Home</span>
+        </a>
+        <a id="nav-create" href="/create">
+          <span>Create</span>
+        </a>
+        <a id="nav-join" href="/join">
+          <span>Join</span>
+        </a>
+        <a id="nav-results">
+          <span>Results</span>
+        </a>
+        <a id="nav-share" href="/share">
+          <span>Share</span>
+        </a>
+        <a id="nav-edit" href="/edit">
+          <span>Edit</span>
+        </a>
+      </div>
+      <div id="nav-right-adjust"></div>
+    </nav>
+    <div id="content">
+      <h1>Share</h1>
+      <p>Scan the QR code to join the poll</p>
+      <div id="qrcode-container">
+        <div id="qrcode"></div>
+      </div>
+      <h2><span>OR</span></h2>
+      <p>Enter the code below to join the poll.</p>
+      <p id="code"></p>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../base.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
