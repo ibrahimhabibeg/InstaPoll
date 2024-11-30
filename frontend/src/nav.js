@@ -18,3 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.getElementById("nav-results").href = `/result?code=${code}`;
   }
 });
+
+document.getElementById("nav-logo").addEventListener("click", () => {
+  window.location.href = "/";
+});
