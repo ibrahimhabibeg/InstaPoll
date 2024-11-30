@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: instapoll
+    runtime: docker
+    repo: https://github.com/ibrahimhabibeg/InstaPoll
+    region: frankfurt
+    plan: free
+    branch: main
+    rootDir: frontend
+    envVars:
+      - key: API_URL
+        fromService:
+          type: web
+          name: instapoll-backend
+          property: RENDER_EXTERNAL_URL
+
+  - type: web
+    name: instapoll-backend
+    runtime: docker
+    repo: https://github.com/ibrahimhabibeg/InstaPoll
+    region: frankfurt
+    plan: free
+    branch: main
+    rootDir: backend
+    envVars:
+      - key: REDIS_HOST
+        fromService:
+          type: redis
+          name: instapoll-redis
+          property: host
+      - key: REDIS_PORT
+        fromService:
+          type: redis
+          name: instapoll-redis
+          property: port
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 80
+
+  - type: redis
+    name: instapoll-redis
+    region: frankfurt
+    ipAllowList: []
+    plan: free
+    maxmemoryPolicy: allkeys-lru
