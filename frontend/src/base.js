@@ -10,20 +10,23 @@ document.querySelectorAll("textarea").forEach(function (textarea) {
 
 document.addEventListener("DOMContentLoaded", async function () {
   const code = localStorage.getItem("code");
+  let isValidCode = false;
+  const pathname = window.location.pathname.split("/")[1];
   if (code) {
-    const response = await fetch(
-      `${API_URL}/pollExists/?code=${code}`
-    );
+    const response = await fetch(`${API_URL}/pollExists/?code=${code}`);
     const data = await response.json();
-    if (!data.used) {
-      localStorage.removeItem("code");
-      localStorage.removeItem("token");
-      if (
-        window.location.pathname === "/share" ||
-        window.location.pathname === "/edit"
-      ) {
-        window.location.href = "/";
-      }
+    isValidCode = data.used;
+  }
+  if (!isValidCode) {
+    localStorage.removeItem("code");
+    localStorage.removeItem("token");
+
+    if (pathname === "share" || pathname === "edit") {
+      window.location.href = "/";
     }
+  }
+  const token = localStorage.getItem("token");
+  if (!token && pathname === "edit") {
+    window.location.href = "/";
   }
 });
