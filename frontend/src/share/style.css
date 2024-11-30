@@ -1,0 +1,51 @@
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#content h1 {
+  margin-bottom: 1rem;
+}
+
+#content p {
+  margin-bottom: 1rem;
+}
+
+#qrcode-container {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: var(--gray-50);
+  border-radius: 0.5rem;
+}
+
+#content h2 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(247, 254, 231, 0.5);
+  line-height: 0.1em;
+  margin: 20px 0;
+}
+
+#content h2 span {
+  background: var(--gray-950);
+  font-size: var(--font-size-lg);
+  padding: 0 10px;
+}
+
+#code {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  #code {
+    font-size: 2rem;
+    letter-spacing: 0.3rem;
+  }
+}
