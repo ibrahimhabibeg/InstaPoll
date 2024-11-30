@@ -12,7 +12,7 @@ services:
         fromService:
           type: web
           name: instapoll-backend
-          property: connectionString
+          property: hostport
 
   - type: web
     name: instapoll-backend
