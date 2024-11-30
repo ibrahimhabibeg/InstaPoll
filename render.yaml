@@ -9,7 +9,7 @@ services:
     rootDir: frontend
     envVars:
       - key: API_URL
-        value: https://instapoll-backend.onrender.com/
+        value: https://instapoll-backend.onrender.com
 
   - type: web
     name: instapoll-backend
