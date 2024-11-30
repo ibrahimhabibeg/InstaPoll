@@ -12,7 +12,7 @@ services:
         fromService:
           type: web
           name: instapoll-backend
-          property: RENDER_EXTERNAL_URL
+          property: connectionString
 
   - type: web
     name: instapoll-backend
@@ -37,6 +37,8 @@ services:
         value: production
       - key: PORT
         value: 80
+      - key: JWT_SECRET
+        value: "sample_secret"
 
   - type: redis
     name: instapoll-redis
