@@ -21,7 +21,6 @@ services:
       PORT: 3000
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      NODE_ENV: production
     volumes:
       - ./backend/src:/usr/src/app/src
     env_file:
