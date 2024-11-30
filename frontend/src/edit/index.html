@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InstaPoll</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="stylesheet" href="../nav.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav>
+      <div id="nav-hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div id="nav-logo">
+        <img src="../assets/icon.png" alt="InstaPoll Icon" />
+        <h3>InstaPoll</h3>
+      </div>
+      <div id="nav-links">
+        <a id="nav-home" href="/">
+          <span>Home</span>
+        </a>
+        <a id="nav-create" href="/create">
+          <span>Create</span>
+        </a>
+        <a id="nav-join" href="/join">
+          <span>Join</span>
+        </a>
+        <a id="nav-results">
+          <span>Results</span>
+        </a>
+        <a id="nav-share" href="/share">
+          <span>Share</span>
+        </a>
+        <a id="nav-edit" href="/edit">
+          <span>Edit</span>
+        </a>
+      </div>
+      <div id="nav-right-adjust"></div>
+    </nav>
+    <form id="createPollForm">
+      <textarea
+        name="question"
+        id="question"
+        rows="1"
+        placeholder="Type your question here..."
+        autofocus
+      ></textarea>
+
+      <button
+        class="outline-button"
+        id="add-option"
+        type="button"
+      >
+        <i class="fas fa-plus"></i> Add Option
+      </button>
+      <button type="submit">Save Changes</button>
+    </form>
+    <script src="../base.js"></script>
+    <script src="../nav.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
