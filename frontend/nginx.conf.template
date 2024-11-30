@@ -1,0 +1,15 @@
+server {
+  listen 80;
+
+  location / {
+    root /usr/share/nginx/html;
+    try_files $uri $uri/ =404;
+  }
+
+  location ~ ^/config.js$ {
+    add_header Content-Type text/javascript;
+    ssi on;
+    set $ENV_API_URL "${API_URL}";
+    return 200 'const API_URL = \'$ENV_API_URL\'';
+  }
+}

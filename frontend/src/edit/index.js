@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 const getInitialQuestionAndOptions = async () => {
   const code = localStorage.getItem("code");
-  const response = await fetch(`http://localhost:3000/join/?code=${code}`);
+  const response = await fetch(`${API_URL}/join/?code=${code}`);
   const data = await response.json();
   return {
     question: data.question,
@@ -62,7 +62,7 @@ const submitUpdatedPoll = async (e) => {
   );
   const code = localStorage.getItem("code");
   const token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:3000/update", {
+  const response = await fetch(`${API_URL}/update`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

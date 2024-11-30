@@ -7,7 +7,7 @@ document
       .map((option) => option.value)
       .filter((option) => option.trim() !== "");
 
-    const response = await fetch("http://localhost:3000/create", {
+    const response = await fetch(`${API_URL}/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,7 +19,7 @@ document
       const data = await response.json();
       localStorage.setItem("code", data.code);
       localStorage.setItem("token", data.token);
-      window.location.href = `/result/?code=${data.code}`;      
+      window.location.href = `/result/?code=${data.code}`;
     } else {
       alert("Failed to create poll. Please try again.");
     }

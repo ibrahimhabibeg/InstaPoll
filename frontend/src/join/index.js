@@ -27,7 +27,7 @@ inputs.addEventListener("input", function (e) {
       const code = Array.from(inputs.children)
         .map((input) => input.value)
         .join("");
-      fetch(`http://localhost:3000/pollExists/?code=${code}`)
+      fetch(`${API_URL}/pollExists/?code=${code}`)
         .then((response) => response.json())
         .then((data) => {
           if (!data.used) {

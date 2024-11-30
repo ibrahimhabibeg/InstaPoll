@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const code = urlParams.get("code");
-  const response = await fetch(`http://localhost:3000/join/?code=${code}`);
+  const response = await fetch(`${API_URL}/join/?code=${code}`);
   if (response.status === 404) {
     alert("Invalid code");
     window.location.href = "/";
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   document.getElementById("submit").addEventListener("click", async () => {
-    const response = await fetch("http://localhost:3000/vote/", {
+    const response = await fetch(`${API_URL}/vote/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const code = localStorage.getItem("code");
   if (code) {
     const response = await fetch(
-      `http://localhost:3000/pollExists/?code=${code}`
+      `${API_URL}/pollExists/?code=${code}`
     );
     const data = await response.json();
     if (!data.used) {

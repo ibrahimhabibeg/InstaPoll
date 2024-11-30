@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  const socket = io(`http://localhost:3000?code=${code}`);
+  const socket = io(`${API_URL}?code=${code}`);
 
   socket.on("poll", (pollData) => {
     let { question, options } = pollData;
