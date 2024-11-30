@@ -5,7 +5,7 @@ services:
     repo: https://github.com/ibrahimhabibeg/InstaPoll
     region: frankfurt
     plan: free
-    branch: main
+    branch: production
     rootDir: frontend
     envVars:
       - key: API_URL
@@ -20,7 +20,7 @@ services:
     repo: https://github.com/ibrahimhabibeg/InstaPoll
     region: frankfurt
     plan: free
-    branch: main
+    branch: production
     rootDir: backend
     envVars:
       - key: REDIS_HOST
