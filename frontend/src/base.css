@@ -36,6 +36,8 @@
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3.5rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -47,6 +49,8 @@
     --font-size-xl: 1rem;
     --font-size-2xl: 1.125rem;
     --font-size-3xl: 1.25rem;
+    --font-size-4xl: 1.5rem;
+    --font-size-5xl: 2rem;
   }
 }
 
@@ -59,6 +63,8 @@
     --font-size-xl: 0.875rem;
     --font-size-2xl: 1rem;
     --font-size-3xl: 1.125rem;
+    --font-size-4xl: 1.25rem;
+    --font-size-5xl: 1.5rem;
   }
 }
 
