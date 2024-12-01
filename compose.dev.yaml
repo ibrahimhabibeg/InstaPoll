@@ -1,6 +1,6 @@
 services:
   frontend:
-    container_name: instapoll-frontend
+    container_name: instapoll-frontend-dev
     build:
       context: ./frontend
     ports:
