@@ -135,4 +135,4 @@ Render automatically deploys the app when changes are pushed to the **production
 ## Acknowledgements
 
 - **Dr. Marwa Fekry**: For her magnificent lectures and guidance throughout the Web Design and Development course (CSC 203) at the Suze Canal University.
-- **Dr. Fatma El-Sayed**: For her incredibly helpful hands-on sessions and continuous support throughout the development of the project.
+- [**Dr. Fatma El-Sayed**](https://www.linkedin.com/in/fatma-elsayed/): For her incredibly helpful hands-on sessions and continuous support throughout the development of the project.
