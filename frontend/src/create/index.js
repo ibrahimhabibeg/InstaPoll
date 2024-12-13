@@ -3,9 +3,29 @@ document
   .addEventListener("submit", async (e) => {
     e.preventDefault();
     const question = document.getElementById("question").value;
+    const errorMessage = document.getElementById("error-message");
+
+    if (question.trim() === "") {
+      const errorMessage = document.getElementById("error-message");
+      errorMessage.textContent = "Please fill in the question.";
+      errorMessage.style.display = "block";
+      return;
+    } else {
+      errorMessage.style.display = "none";
+    }
+
+
     const options = Array.from(document.querySelectorAll(".option textarea"))
       .map((option) => option.value)
       .filter((option) => option.trim() !== "");
+
+    if (options.length < document.querySelectorAll(".option textarea").length) {
+      errorMessage.textContent = "Please fill in all options.";
+      errorMessage.style.display = "block";
+      return;
+    } else {
+      errorMessage.style.display = "none";
+    }
 
     const response = await fetch(`${API_URL}/create`, {
       method: "POST",
@@ -21,7 +41,8 @@ document
       localStorage.setItem("token", data.token);
       window.location.href = `/result/?code=${data.code}`;
     } else {
-      alert("Failed to create poll. Please try again.");
+      errorMessage.textContent = "Failed to create poll. Please try again.";
+      errorMessage.style.display = "block";
     }
   });
 

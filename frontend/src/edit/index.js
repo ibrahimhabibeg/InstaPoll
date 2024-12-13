@@ -47,7 +47,7 @@ const insertNewOptionToHtml = (newOptionText, newOptionIndex) => {
   `;
   document
     .getElementById("createPollForm")
-    .insertBefore(newOption, document.getElementById("add-option"));
+    .insertBefore(newOption, document.getElementById("error-message"));
 };
 
 const deleteOption = (optionId) => {
@@ -57,9 +57,29 @@ const deleteOption = (optionId) => {
 const submitUpdatedPoll = async (e) => {
   e.preventDefault();
   const question = document.getElementById("question").value;
-  const options = Array.from(document.getElementsByClassName("option")).map(
-    (option) => option.querySelector("textarea").value
-  );
+  const errorMessage = document.getElementById("error-message");
+
+  if (question.trim() === "") {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.textContent = "Please fill in the question.";
+    errorMessage.style.display = "block";
+    return;
+  } else {
+    errorMessage.style.display = "none";
+  }
+
+  const options = Array.from(document.getElementsByClassName("option"))
+    .map((option) => option.querySelector("textarea").value)
+    .filter((option) => option.trim() !== "");
+
+  if (options.length < document.getElementsByClassName("option").length) {
+    errorMessage.textContent = "Please fill in all options.";
+    errorMessage.style.display = "block";
+    return;
+  } else {
+    errorMessage.style.display = "none";
+  }
+
   const code = localStorage.getItem("code");
   const token = localStorage.getItem("token");
   const response = await fetch(`${API_URL}/update`, {

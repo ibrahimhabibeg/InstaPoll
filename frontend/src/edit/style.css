@@ -66,3 +66,9 @@ button {
 #add-option {
   margin-top: 20px;
 }
+
+#error-message {
+  color: var(--danger);
+  margin-top: 10px;
+  display: none;
+}
