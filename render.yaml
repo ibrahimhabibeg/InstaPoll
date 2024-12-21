@@ -37,6 +37,18 @@ services:
       - key: JWT_SECRET
         value: "sample_secret"
 
+  - type: web
+    name: instapoll-swagger
+    runtime: docker
+    image:
+      url: docker.io/swaggerapi/swagger-ui:latest
+    region: frankfurt
+    plan: free
+    branch: production
+    envVars:
+      - key: SWAGGER_JSON
+        value: https://raw.githubusercontent.com/ibrahimhabibeg/InstaPoll/main/backend/api.yaml
+
   - type: redis
     name: instapoll-redis
     region: frankfurt
