@@ -41,4 +41,4 @@ services:
     environment:
       - SWAGGER_JSON=/api.yaml
     volumes:
-      - ./backend/api.yaml:/api.yaml
+      - ./frontend/src/swagger/api.yaml:/api.yaml
